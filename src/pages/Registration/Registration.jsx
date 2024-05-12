@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/Provider";
 import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import { FaEye } from "react-icons/fa";
 import { IoMdEyeOff } from "react-icons/io";
 
@@ -23,14 +24,17 @@ const Register = () => {
             setRegisterError("password should be atlest 6 charecter");
             return
         } else if (!/[A-Z]/.test(password)) {
-            setRegisterError("password should have atlast 1 uppercase charecter");
+            setRegisterError("password should have atlast 1 capital letter");
             return
-        } else if (!/[a-z]/.test(password)) {
-            setRegisterError("password should have atlast 1 lowercase charecter");
+        } else if (!/[0-9]/.test(password)) {
+            setRegisterError("password should have atlast 1 numeric character");
+            return
+        } else if (!/[ !"#$%&'()*+,-./:;<=>?@[\\\]^_`{|}~]/.test(password)) {
+            setRegisterError("password should have atlast 1 special charecter");
             return
         }
 
-        emailRegister(email, password, name, photoURL)
+        emailRegister(email, password)
             .then(() => {
                 updateUser(name, photoURL)
                     .then(() => console.log("user updated"))
@@ -39,8 +43,8 @@ const Register = () => {
                 navigate("/")
             })
             .catch(() => {
-                const registerError = () => toast.error("Emai already exist");
-                registerError()
+                 toast.error("Emai already exist");
+                 console.log("error")
             })
     }
     return (

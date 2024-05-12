@@ -5,6 +5,9 @@ import { AuthContext } from "../../../Provider/Provider";
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
+    const handleLogOut = () => {
+        logOut();
+    }
 
     const menu = <>
         <li><Link to={"/"}>Home</Link></li>
@@ -13,6 +16,7 @@ const Navbar = () => {
         <li><Link to={"featured-blogs"}>Featured Blogs</Link></li>
         <li><Link to={"wishlist"}>Wishlist</Link></li>
     </>
+    console.log(user?.photoURL)
     return (
         <div className="navbar bg-base-100">
             <div className="navbar-start">
@@ -32,11 +36,14 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                {user ? <div className="relative mr-8 z-10">
-                    <div className="avatar cursor-pointer">
+                {user ? <div className="relative mr-8 z-10 flex items-center gap-4">
+                    <div className="avatar">
                         <div className="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                             <img src={user?.photoURL} />
                         </div>
+                    </div>
+                    <div>
+                        <button onClick={handleLogOut} className="btn bg-red-600 border-none text-white mt-2">Log out</button>
                     </div>
                 </div>
                     : <div className="flex gap-2">

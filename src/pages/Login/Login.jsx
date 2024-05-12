@@ -2,10 +2,11 @@ import { useContext } from "react";
 import { AuthContext } from "../../Provider/Provider";
 import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
 
 
 const Login = () => {
-    const { emailLogin, googleLogin, githubLogin } = useContext(AuthContext)
+    const { emailLogin, googleLogin} = useContext(AuthContext)
     const notifyLoginSuccess = () => toast.success("Loged in successfully");
     const notifyLoginError = () => toast.error("Please provide valid email and password");
     const navigate = useNavigate();
@@ -39,17 +40,7 @@ const Login = () => {
             })
 
     }
-    const handleGithubLogin = () => {
-        githubLogin()
-            .then(() => {
-                navigate("/")
-                notifyLoginSuccess()
-            })
-            .catch(() => {
-                console.error(error)
-                toast.error("Login faild")
-            })
-    }
+    
     return (
         <div data-aos="fade-up" data-aos-duration="2000" className="card shrink-0 shadow-2xl bg-base-100 w-full md:w-2/3 lg:w-1/2 mx-auto">
             <div className="card-body">
@@ -73,7 +64,6 @@ const Login = () => {
                 <div>
                     <p className="flex gap-4">
                         <span>Login with</span> <button onClick={handleGoogleLogin} className="text-4xl"><FcGoogle /></button>
-                        <button onClick={handleGithubLogin} className="text-blue-600 text-4xl"><FaGithub /></button>
                     </p>
                 </div>
                 <div>
