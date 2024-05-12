@@ -1,3 +1,7 @@
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/Provider";
+import { toast } from "react-toastify";
+import { Link, useNavigate } from "react-router-dom";
 
 
 const Login = () => {
@@ -10,13 +14,13 @@ const Login = () => {
         const email = e.target.email.value;
         const password = e.target.password.value;
         emailLogin(email, password)
-            .then(result => {
+            .then(() => {
                 console.log("sahdfgkasjdfk")
                 navigate("/")
                 notifyLoginSuccess()
 
             })
-            .catch(error => {
+            .catch(() => {
                 notifyLoginError()
             })
     }
@@ -37,11 +41,11 @@ const Login = () => {
     }
     const handleGithubLogin = () => {
         githubLogin()
-            .then(res => {
+            .then(() => {
                 navigate("/")
                 notifyLoginSuccess()
             })
-            .catch(err => {
+            .catch(() => {
                 console.error(error)
                 toast.error("Login faild")
             })
