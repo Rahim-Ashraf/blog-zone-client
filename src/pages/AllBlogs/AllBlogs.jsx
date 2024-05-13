@@ -1,22 +1,29 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Provider/Provider";
 
 
 const AllBlogs = () => {
     const { user } = useContext(AuthContext);
+    const [allBlogs, setAllBlogs] = useState([])
+    const [blogs, setBlogs] = useState([])
+    useEffect(() => {
+        axios.get('https://blog-zone-server.vercel.app/all-blogs')
+            .then(res => {
+                setAllBlogs(res.data)
+                setBlogs(res.data)
+            });
+    }, [])
 
-    const { data: allBlogs } = useQuery({
-        queryKey: ["allBlogs"],
-        queryFn: async () => {
-            const data = await axios.get('https://blog-zone-server.vercel.app/all-blogs');
-            return data.data
+    const handleCategoryChange = e => {
+        if (e.target.value === "All") {
+            setBlogs(allBlogs)
+            return
         }
-    })
-    const handleSelect = () => {
-
+        const filteredBlogs = allBlogs.filter(blog => blog.category === e.target.value)
+        setBlogs(filteredBlogs)
     }
     const addWishlist = (blog) => {
         blog.wishlist_email = user.email;
@@ -27,7 +34,11 @@ const AllBlogs = () => {
     return (
         <div>
             <div className="flex justify-center my-4">
-                <select  name="category" className="select select-bordered w-fit">
+                <label className="label">
+                    <h3 className="font-bold">filter by category</h3>
+                </label>
+                <select onChange={handleCategoryChange} name="category" className="select select-bordered w-fit">
+                    <option value="All">All</option>
                     <option value="Self Improvement">Self Improvement</option>
                     <option value="Health & Wellness">Health & Wellness</option>
                     <option value="Science">Science</option>
@@ -36,7 +47,7 @@ const AllBlogs = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10">
 
-                {allBlogs?.map(blog => <div key={blog._id}>
+                {blogs?.map(blog => <div key={blog._id}>
                     <div className="md:flex p-4 gap-4 rounded bg-base-100 shadow-xl">
                         <figure><img className="rounded" src={blog.image_url} alt="Shoes" /></figure>
                         <div>

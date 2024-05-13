@@ -5,7 +5,6 @@ import { AuthContext } from "../../Provider/Provider";
 
 const AddBlog = () => {
     const { user } = useContext(AuthContext)
-    console.log(user)
     const email = user?.email
     const ownerName = user?.displayName
     const ownerProfile = user?.photoURL
@@ -76,7 +75,7 @@ const AddBlog = () => {
                         <option value="Lifestyle">Lifestyle</option>
                     </select>
                 </label>
-                <input className="btn btn-primary" type="submit" value="submit" />
+                <input className="btn btn-primary" type="submit" value="Add" />
             </form>
         </div>
     );
