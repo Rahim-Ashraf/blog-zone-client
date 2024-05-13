@@ -11,7 +11,7 @@ const AllBlogs = () => {
     const { data: allBlogs } = useQuery({
         queryKey: ["allBlogs"],
         queryFn: async () => {
-            const data = await axios.get('http://localhost:5000/all-blogs');
+            const data = await axios.get('https://blog-zone-server.vercel.app/all-blogs');
             return data.data
         }
     })
@@ -21,7 +21,7 @@ const AllBlogs = () => {
     const addWishlist = (blog) => {
         blog.wishlist_email = user.email;
 
-        axios.post("http://localhost:5000/add-wishlist", blog)
+        axios.post("https://blog-zone-server.vercel.app/add-wishlist", blog)
             .then(res => console.log(res.data))
     }
 

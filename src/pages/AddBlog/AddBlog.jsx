@@ -27,7 +27,7 @@ const AddBlog = () => {
             ownerName,
             ownerProfile
         }
-        axios.post("http://localhost:5000/add-blog", data)
+        axios.post("https://blog-zone-server.vercel.app/add-blog", data)
             .then(data => console.log(data.data))
     }
     return (

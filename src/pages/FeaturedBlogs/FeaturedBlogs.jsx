@@ -6,7 +6,7 @@ const FeaturedBlogs = () => {
     const { data: featuredBlogs } = useQuery({
         queryKey: ['recentBlogs'],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:5000/all-blogs');
+            const res = await axios.get('https://blog-zone-server.vercel.app/all-blogs');
             const data = res.data;
             const sortedData= data.sort((a, b) => {
                 const sortItem = b.long_description.length - a.long_description.length

@@ -44,7 +44,7 @@ const router = createBrowserRouter([
             {
                 path: "/blog-details/:id",
                 element: <BlogDetails></BlogDetails>,
-                loader: ({ params }) => fetch(`http://localhost:5000/blog-details/${params.id}`)
+                loader: ({ params }) => fetch(`https://blog-zone-server.vercel.app/blog-details/${params.id}`)
             },
             {
                 path: "/wishlist",
