@@ -10,7 +10,7 @@ const Wishlist = () => {
     const { data: wishlisted } = useQuery({
         queryKey: ["wishlisted"],
         queryFn: async () => {
-            const data = await axios.get(`https://blog-zone-server.vercel.app/wishlisted?email=${user.email}`);
+            const data = await axios.get(`http://localhost:5000/wishlist?email=${user.email}`);
             return data.data
         }
     })

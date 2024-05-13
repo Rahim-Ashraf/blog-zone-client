@@ -1,12 +1,15 @@
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/Provider";
 import { toast } from "react-toastify";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 
 
 const Login = () => {
-    const { emailLogin, googleLogin} = useContext(AuthContext)
+    const location = useLocation()
+    console.log(location)
+
+    const { emailLogin, googleLogin } = useContext(AuthContext)
     const notifyLoginSuccess = () => toast.success("Loged in successfully");
     const notifyLoginError = () => toast.error("Please provide valid email and password");
     const navigate = useNavigate();
@@ -17,7 +20,7 @@ const Login = () => {
         emailLogin(email, password)
             .then(() => {
                 console.log("sahdfgkasjdfk")
-                navigate("/")
+                navigate(location.state || "/")
                 notifyLoginSuccess()
 
             })
@@ -30,7 +33,7 @@ const Login = () => {
         googleLogin()
             .then(result => {
                 console.log(result)
-                navigate("/")
+                navigate(location.state || "/")
                 notifyLoginSuccess()
             })
             .catch(error => {
@@ -40,7 +43,7 @@ const Login = () => {
             })
 
     }
-    
+
     return (
         <div data-aos="fade-up" data-aos-duration="2000" className="card shrink-0 shadow-2xl bg-base-100 w-full md:w-2/3 lg:w-1/2 mx-auto">
             <div className="card-body">

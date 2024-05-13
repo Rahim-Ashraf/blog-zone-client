@@ -11,7 +11,7 @@ const Home = () => {
             return res.data
         }
     })
-    console.log(recentBlogs)
+    
     return (
         <div>
             {/* banner */}
