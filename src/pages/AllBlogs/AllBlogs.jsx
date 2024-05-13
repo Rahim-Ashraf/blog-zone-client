@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 
 const AllBlogs = () => {
@@ -32,7 +33,7 @@ const AllBlogs = () => {
                             <h2 className="card-title">{blog.title}</h2>
                             <p>{blog.description}</p>
                             <div className="card-actions justify-between">
-                                <button className="btn btn-primary">Details</button>
+                                <Link to={`/blog-details/${blog._id}`} className="btn btn-primary">Details</Link>
                                 <button className="btn btn-primary">Wishlist</button>
                             </div>
                         </div>
