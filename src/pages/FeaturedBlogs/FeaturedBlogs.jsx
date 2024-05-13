@@ -6,8 +6,14 @@ const FeaturedBlogs = () => {
     const { data: featuredBlogs } = useQuery({
         queryKey: ['recentBlogs'],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:5000/recent-blogs');
-            return res.data
+            const res = await axios.get('http://localhost:5000/all-blogs');
+            const data = res.data;
+            const sortedData= data.sort((a, b) => {
+                const sortItem = b.long_description.length - a.long_description.length
+                return sortItem
+            });
+            const slicedArray = sortedData.slice(0, 10);
+            return slicedArray;
         }
     })
 
@@ -28,8 +34,8 @@ const FeaturedBlogs = () => {
                         featuredBlogs?.map((blog, idx) => <tr key={blog._id}>
                             <th>{idx + 1}</th>
                             <th>{blog.title}</th>
-                            <td>{blog.location}</td>
-                            <td>{blog.tourists_spot_name}</td>
+                            <td>{blog.ownerName}</td>
+                            <td><img className="rounded-full max-w-10" src={blog.ownerProfile} alt="" /></td>
                         </tr>)
                     }
                 </tbody>
