@@ -11,10 +11,10 @@ const Navbar = () => {
 
     const menu = <>
         <li><Link to={"/"}>Home</Link></li>
-        <li><Link to={"/add-blog"}>Add Blog</Link></li>
+        {user && <li><Link to={"/add-blog"}>Add Blog</Link></li>}
         <li><Link to={"all-blogs"}>All blogs</Link></li>
         <li><Link to={"featured-blogs"}>Featured Blogs</Link></li>
-        <li><Link to={"wishlist"}>Wishlist</Link></li>
+        {user && <li><Link to={"wishlist"}>Wishlist</Link></li>}
     </>
     return (
         <div className="navbar bg-base-100">
@@ -27,7 +27,7 @@ const Navbar = () => {
                         {menu}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">Blog Zone</a>
+                <Link to="/" className="btn btn-ghost text-xl text-emerald-600 font-bold">Blog Zone</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">

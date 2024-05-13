@@ -70,9 +70,10 @@ const AddBlog = () => {
                         <span className="label-text">Category</span>
                     </div>
                     <select name="category" className="select select-bordered w-fit">
-                        <option value="Homer">Homer</option>
-                        <option value="Marge">Marge</option>
-                        <option value="Bart">Bart</option>
+                        <option value="Self Improvement">Self Improvement</option>
+                        <option value="Health & Wellness">Health & Wellness</option>
+                        <option value="Science">Science</option>
+                        <option value="Lifestyle">Lifestyle</option>
                     </select>
                 </label>
                 <input className="btn btn-primary" type="submit" value="submit" />

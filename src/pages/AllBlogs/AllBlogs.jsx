@@ -20,7 +20,6 @@ const AllBlogs = () => {
     }
     const addWishlist = (blog) => {
         blog.wishlist_email = user.email;
-
         axios.post("https://blog-zone-server.vercel.app/add-wishlist", blog)
             .then(res => console.log(res.data))
     }
@@ -28,12 +27,12 @@ const AllBlogs = () => {
     return (
         <div>
             <div className="flex justify-center my-4">
-                <details className="dropdown">
-                    <summary className="m-1 btn select">Sort By</summary>
-                    <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
-                        <li onClick={handleSelect} className="btn">Cost high to low</li>
-                    </ul>
-                </details>
+                <select  name="category" className="select select-bordered w-fit">
+                    <option value="Self Improvement">Self Improvement</option>
+                    <option value="Health & Wellness">Health & Wellness</option>
+                    <option value="Science">Science</option>
+                    <option value="Lifestyle">Lifestyle</option>
+                </select>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10">
 
