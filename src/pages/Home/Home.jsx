@@ -11,7 +11,7 @@ const Home = () => {
             return res.data
         }
     })
-
+    console.log(recentBlogs)
     return (
         <div>
             {/* banner */}
@@ -29,7 +29,7 @@ const Home = () => {
             {/* recent blogs */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {recentBlogs?.map(blog => <div key={blog._id}>
-                    <div className="card card-compact w-96 bg-base-100 shadow-xl">
+                    <div className="flex p-4 rounded-md items-center bg-base-100 shadow-xl">
                         <figure><img src={blog.image} alt="Shoes" /></figure>
                         <div className="card-body">
                             <h2 className="card-title">{blog.title}</h2>
