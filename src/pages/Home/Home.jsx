@@ -1,11 +1,16 @@
-import { useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 
 const Home = () => {
 
-    useEffect(()=>{
-        // http://localhost:5000/recent-blogs
-    },[])
+    const { data: recentBlogs } = useQuery({
+        queryKey: ['recentBlogs'],
+        queryFn: async () => {
+            const res = await axios.get('http://localhost:5000/recent-blogs');
+            return res.data
+        }
+    })
 
     return (
         <div>
@@ -16,14 +21,26 @@ const Home = () => {
                     <div>
                         <h1 className="text-5xl font-bold">Blog zone site</h1>
                         <p className="py-6">Welcome to Blog Zone, your digital sanctuary for captivating content and boundless inspiration. Here, imagination knows no bounds. Our carefully curated collection of articles, videos, and insights awaits your exploration, promising a journey brimming with discovery and enlightenment. Embark with us on a quest for knowledge, creativity, and connection. Step into our world, where every scroll unveils a new chapter in the story of your digital odyssey.</p>
-                        <button className="btn btn-primary">Get Started</button>
+                        <button className="btn btn-primary">Details</button>
                     </div>
                 </div>
             </div>
 
             {/* recent blogs */}
-            <div>
-                
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {recentBlogs?.map(blog => <div key={blog._id}>
+                    <div className="card card-compact w-96 bg-base-100 shadow-xl">
+                        <figure><img src={blog.image} alt="Shoes" /></figure>
+                        <div className="card-body">
+                            <h2 className="card-title">{blog.title}</h2>
+                            <p>{blog.description}</p>
+                            <div className="card-actions justify-between">
+                                <button className="btn btn-primary">Details</button>
+                                <button className="btn btn-primary">Wishlist</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>)}
             </div>
         </div>
     );

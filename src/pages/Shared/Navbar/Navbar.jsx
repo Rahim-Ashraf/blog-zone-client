@@ -16,7 +16,6 @@ const Navbar = () => {
         <li><Link to={"featured-blogs"}>Featured Blogs</Link></li>
         <li><Link to={"wishlist"}>Wishlist</Link></li>
     </>
-    console.log(user?.photoURL)
     return (
         <div className="navbar bg-base-100">
             <div className="navbar-start">
