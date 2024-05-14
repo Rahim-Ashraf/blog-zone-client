@@ -82,7 +82,7 @@ const Register = () => {
                         {registerError}
                     </p>
                     <div className="form-control mt-6">
-                        <button type="submit" className="btn btn-primary">Register</button>
+                        <button type="submit" className="btn bg-emerald-600 text-white">Register</button>
                     </div>
                 </form>
 

@@ -61,7 +61,7 @@ const Login = () => {
                         <input type="password" name="password" placeholder="password" className="input input-bordered w-full" required />
                     </div>
                     <div className="form-control mt-6">
-                        <button className="btn btn-primary">Login</button>
+                        <button className="btn bg-emerald-600 text-white">Login</button>
                     </div>
                 </form>
                 <div>

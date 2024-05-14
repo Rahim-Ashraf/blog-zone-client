@@ -3,6 +3,7 @@ import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/Provider";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 
 const Home = () => {
@@ -16,8 +17,16 @@ const Home = () => {
         }
     })
     const addWishlist = (blog) => {
+        if (!user) {
+            toast.error("Please login")
+            return
+        }
         blog.wishlist_email = user.email;
-        axios.post("https://blog-zone-server.vercel.app/add-wishlist", blog)
+        const { title, image_url, short_description, long_description, category, email, ownerName, ownerProfile, wishlist_email } = blog
+        const newDate = new Date();
+        const newBlog = { title, image_url, short_description, long_description, category, email, ownerName, ownerProfile, wishlist_email, newDate }
+
+        axios.post("https://blog-zone-server.vercel.app/add-wishlist", newBlog)
             .then(res => {
                 toast.success("Wishlisted")
             })
@@ -39,7 +48,7 @@ const Home = () => {
                     <div>
                         <h1 className="text-5xl font-bold">Blog zone site</h1>
                         <p className="py-6">Welcome to Blog Zone, your digital sanctuary for captivating content and boundless inspiration. Here, imagination knows no bounds. Our carefully curated collection of articles, videos, and insights awaits your exploration, promising a journey brimming with discovery and enlightenment. Embark with us on a quest for knowledge, creativity, and connection. Step into our world, where every scroll unveils a new chapter in the story of your digital odyssey.</p>
-                        <button className="btn btn-primary">Details</button>
+                        <button className="btn bg-emerald-600 text-white">Details</button>
                     </div>
                 </div>
             </div>
@@ -56,7 +65,7 @@ const Home = () => {
                                 <p>{blog.short_description}</p>
                                 <h2 className="text-xl font-semibold">Category: {blog.category}</h2>
                                 <div className="flex justify-between">
-                                    <button className="btn btn-primary">Details</button>
+                                    <Link to={`/blog-details/${blog._id}`} className="btn bg-emerald-600 text-white">Details</Link>
                                     <button onClick={() => addWishlist(blog)} className="btn bg-pink-600 text-white">Wishlist</button>
                                 </div>
                             </div>
@@ -76,7 +85,7 @@ const Home = () => {
                         <input type="email" placeholder="Your email" className="input input-bordered" required />
                     </div>
                     <div className="form-control mt-6">
-                        <button className="btn btn-primary">subscrib</button>
+                        <button className="btn bg-emerald-600 text-white">subscrib</button>
                     </div>
                 </form>
             </div>

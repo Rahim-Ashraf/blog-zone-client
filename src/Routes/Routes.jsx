@@ -10,6 +10,7 @@ import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import BlogDetails from "../pages/BlogDetails/BlogDetails";
 import Wishlist from "../pages/Wishlist/Wishlist";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import Update from "../pages/Update/Update";
 
 const router = createBrowserRouter([
     {
@@ -43,12 +44,17 @@ const router = createBrowserRouter([
             },
             {
                 path: "/blog-details/:id",
-                element: <BlogDetails></BlogDetails>,
-                loader: ({ params }) => fetch(`https://blog-zone-server.vercel.app/blog-details/${params.id}`)
+                element: <PrivateRoute><BlogDetails></BlogDetails></PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/blog/${params.id}`)
             },
             {
                 path: "/wishlist",
                 element: <PrivateRoute><Wishlist></Wishlist></PrivateRoute>
+            },
+            {
+                path: "/update/:id",
+                element: <PrivateRoute><Update></Update></PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/blog/${params.id}`)
             }
         ]
     },
