@@ -10,7 +10,7 @@ const BlogDetails = () => {
     const blogDetails = useLoaderData();
     const [comments, setComments] = useState(null)
     useEffect(() => {
-        axios.get(`http://localhost:5000/comments?id=${blogDetails._id}`)
+        axios.get(`https://blog-zone-server.vercel.app/comments?id=${blogDetails._id}`)
             .then(res => setComments(res.data))
     }, [])
 
@@ -19,7 +19,7 @@ const BlogDetails = () => {
         const commentValue = e.target.comment.value;
         const id = blogDetails._id
         const comment = { commentValue, commenter: user.displayName, commenterProfile: user.photoURL, id }
-        axios.post("http://localhost:5000/add-comment", comment)
+        axios.post("https://blog-zone-server.vercel.app/add-comment", comment)
             .then(res => {
                 toast.success("commented")
                 e.target.comment.value = ""

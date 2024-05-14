@@ -25,7 +25,7 @@ const Wishlist = () => {
             confirmButtonText: "Yes, Remove it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:5000/remove-wishlist?id=${id}`)
+                axios.delete(`https://blog-zone-server.vercel.app/remove-wishlist?id=${id}`)
                     .then(res => {
                         if (res.data.deletedCount > 0) {
                             Swal.fire({

@@ -45,7 +45,7 @@ const router = createBrowserRouter([
             {
                 path: "/blog-details/:id",
                 element: <PrivateRoute><BlogDetails></BlogDetails></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/blog/${params.id}`)
+                loader: ({ params }) => fetch(`https://blog-zone-server.vercel.app/blog/${params.id}`)
             },
             {
                 path: "/wishlist",
@@ -54,7 +54,7 @@ const router = createBrowserRouter([
             {
                 path: "/update/:id",
                 element: <PrivateRoute><Update></Update></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/blog/${params.id}`)
+                loader: ({ params }) => fetch(`https://blog-zone-server.vercel.app/blog/${params.id}`)
             }
         ]
     },

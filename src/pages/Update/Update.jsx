@@ -20,7 +20,7 @@ const Update = () => {
             long_description,
             category
         }
-        axios.patch(`http://localhost:5000/update?id=${blogDetails._id}`,newData)
+        axios.patch(`https://blog-zone-server.vercel.app/update?id=${blogDetails._id}`,newData)
             .then(res => toast.success("Updated succesfully"))
             .catch(err => toast.error("Update faild"))
     }
