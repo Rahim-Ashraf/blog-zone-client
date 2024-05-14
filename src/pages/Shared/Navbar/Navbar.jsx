@@ -46,8 +46,8 @@ const Navbar = () => {
                     </div>
                 </div>
                     : <div className="flex gap-2">
-                        <Link to={"/login"} className="btn">Login</Link>
-                        <Link to={"/register"} className="btn">Register</Link>
+                        <Link to={"/login"} className="btn bg-blue-600 text-white">Login</Link>
+                        <Link to={"/register"} className="btn bg-sky-600 text-white">Register</Link>
                     </div>}
             </div>
         </div>

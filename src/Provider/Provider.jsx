@@ -1,6 +1,7 @@
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile, signInWithPopup, GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import app from "../firebase/firebase.config";
+import axios from "axios";
 
 export const AuthContext = createContext(null)
 
@@ -30,11 +31,9 @@ const Provider = ({ children }) => {
 
     const logOut = () => {
         setLoading(true)
-        signOut(auth).then(() => {
-            // Sign-out successful.
-        }).catch(() => {
-            // An error happened.
-        });
+        signOut(auth)
+            .then()
+            .catch();
     }
 
     const updateUser = (name, photoURL) => {
@@ -46,8 +45,22 @@ const Provider = ({ children }) => {
 
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+            const userEmail = currentUser?.email || user?.email;
+            const loggedUser = { email: userEmail };
             setUser(currentUser);
             setLoading(false);
+            if (currentUser) {
+                axios.post('https://blog-zone-server.vercel.app/jwt', loggedUser, { withCredentials: true })
+                    .then()
+            }
+            else {
+                axios.post('https://blog-zone-server.vercel.app/logout', loggedUser, {
+                    withCredentials: true
+                })
+                    .then(res => {
+                        console.log(res.data);
+                    })
+            }
         });
         return () => {
             unSubscribe()
