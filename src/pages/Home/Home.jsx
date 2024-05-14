@@ -74,6 +74,49 @@ const Home = () => {
                 </div>
             </div>
 
+            {/* extra sections */}
+            <section>
+                <h2 className='text-center text-4xl font-bold mb-8'>About us</h2>
+                <div className="md:flex items-center gap-4 bg-primary rounded-lg p-6">
+                    <div>
+                        <p className='p-10 text-white text-xl rounded grid-rows-6'>
+                            <span className='text-secondary font-bold text-2xl'>Welcome to Blog Zone</span>,
+                            <br />
+                            Welcome to Blog Zone! We are dedicated to bringing you the latest insights, trends, and stories across a variety of topics. Our mission is to inform, inspire, and entertain our readers with high-quality content that sparks curiosity and fosters a sense of community.
+                            <br />
+                            Whether you are here to learn something new or simply enjoy a good read, Blog Zone is your go-to source for engaging and diverse content. Thank you for being a part of our journey.
+                            <br />
+                            Join our community today and never miss an update—explore Blog Zone and discover something new every day!
+                        </p>
+                    </div>
+                    <div>
+                        <img className="rounded h-auto" src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
+                    </div>
+                </div>
+            </section>
+            <div className="bg-cyan-200 rounded-lg p-6 my-10">
+                <form className="card-body">
+                    <h2 className='text-center text-4xl font-bold mb-8'>Contact us</h2>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Your Email</span>
+                        </label>
+                        <input type="email" placeholder="Your email" className="input input-bordered" required />
+                    </div>
+                    <div className="form-control">
+                        <label className="label">
+                            <span className="label-text">Your Name</span>
+                        </label>
+                        <input type="text" placeholder="Your name" className="input input-bordered" required />
+
+                    </div>
+
+                    <div className="form-control mt-6">
+                        <button className="btn bg-cyan-600 text-white">Submit</button>
+                    </div>
+                </form>
+            </div>
+
             {/* newsletter */}
             <div className="my-10">
                 <h2 className="text-xl font-bold text-center text-rose-600">newsletter</h2>
@@ -89,6 +132,7 @@ const Home = () => {
                     </div>
                 </form>
             </div>
+
         </div>
     );
 };

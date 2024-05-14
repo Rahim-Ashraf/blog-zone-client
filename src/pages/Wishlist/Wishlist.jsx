@@ -10,7 +10,7 @@ const Wishlist = () => {
     const { user } = useContext(AuthContext);
     const [wishlisted, setWishlisted] = useState(null)
     useEffect(() => {
-        axios.get(`https://blog-zone-server.vercel.app/wishlist?email=${user.email}`)
+        axios.get(`https://blog-zone-server.vercel.app/wishlist?email=${user.email}`, { withCredentials: true })
             .then(res => setWishlisted(res.data))
     }, [])
     const handleRemove = id => {
@@ -36,7 +36,7 @@ const Wishlist = () => {
                             setWishlisted(wishlisted.filter(wishlit => wishlit._id !== id))
                         }
                     })
-                    .catch(err=>console.log(err))
+                    .catch(err => console.log(err))
             }
         });
     }

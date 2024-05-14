@@ -7,7 +7,6 @@ import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
     const location = useLocation()
-    console.log(location)
 
     const { emailLogin, googleLogin } = useContext(AuthContext)
     const notifyLoginSuccess = () => toast.success("Loged in successfully");
@@ -19,7 +18,6 @@ const Login = () => {
         const password = e.target.password.value;
         emailLogin(email, password)
             .then(() => {
-                console.log("sahdfgkasjdfk")
                 navigate(location.state || "/")
                 notifyLoginSuccess()
 
@@ -32,7 +30,6 @@ const Login = () => {
     const handleGoogleLogin = () => {
         googleLogin()
             .then(result => {
-                console.log(result)
                 navigate(location.state || "/")
                 notifyLoginSuccess()
             })

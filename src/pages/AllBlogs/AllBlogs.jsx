@@ -49,7 +49,8 @@ const AllBlogs = () => {
         e.preventDefault()
         const title = e.target.search.value;
         axios.get(`https://blog-zone-server.vercel.app/blog-by-title?title=${title}`)
-            .then(res => setBlogs(res.data))
+            .then(res => setBlogs(res.data));
+        e.target.search.value = ""
     }
 
     return (

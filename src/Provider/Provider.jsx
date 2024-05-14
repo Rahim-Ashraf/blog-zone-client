@@ -45,7 +45,7 @@ const Provider = ({ children }) => {
 
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-            const userEmail = currentUser?.email || user?.email;
+            const userEmail = currentUser?.email;
             const loggedUser = { email: userEmail };
             setUser(currentUser);
             setLoading(false);
@@ -54,12 +54,10 @@ const Provider = ({ children }) => {
                     .then()
             }
             else {
-                axios.post('https://blog-zone-server.vercel.app/logout', loggedUser, {
+                axios.post('https://blog-zone-server.vercel.app/logout', user?.email, {
                     withCredentials: true
                 })
-                    .then(res => {
-                        console.log(res.data);
-                    })
+                    .then()
             }
         });
         return () => {
