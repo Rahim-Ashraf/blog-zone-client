@@ -11,7 +11,7 @@ const Home = () => {
     const { data: recentBlogs } = useQuery({
         queryKey: ['recentBlogs'],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:5000/recent-blogs');
+            const res = await axios.get('https://blog-zone-server.vercel.app/recent-blogs');
             return res.data
         }
     })
