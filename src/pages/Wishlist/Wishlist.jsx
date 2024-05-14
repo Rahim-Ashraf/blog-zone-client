@@ -1,21 +1,44 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Provider/Provider";
+import Swal from "sweetalert2";
 
 
 const Wishlist = () => {
     const { user } = useContext(AuthContext);
-    const { data: wishlisted } = useQuery({
-        queryKey: ["wishlisted"],
-        queryFn: async () => {
-            const data = await axios.get(`https://blog-zone-server.vercel.app/wishlist?email=${user.email}`);
-            return data.data
-        }
-    })
-    const handleRemove = () => {
-        
+    const [wishlisted, setWishlisted] = useState(null)
+    useEffect(() => {
+        axios.get(`https://blog-zone-server.vercel.app/wishlist?email=${user.email}`)
+            .then(res => setWishlisted(res.data))
+    }, [])
+    const handleRemove = id => {
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Remove it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`http://localhost:5000/remove-wishlist?id=${id}`)
+                    .then(res => {
+                        if (res.data.deletedCount > 0) {
+                            Swal.fire({
+                                title: "Removed!",
+                                text: "Your file has been Removed.",
+                                icon: "success"
+                            });
+                            setWishlisted(wishlisted.filter(wishlit => wishlit._id !== id))
+                        }
+                    })
+                    .catch(err=>console.log(err))
+            }
+        });
     }
 
     return (
@@ -29,7 +52,7 @@ const Wishlist = () => {
                         <h2 className="text-xl text-emerald-600 font-semibold">Category: {blog.category}</h2>
                         <div className="card-actions justify-between">
                             <Link to={`/blog-details/${blog._id}`} className="btn bg-emerald-600 text-white">Details</Link>
-                            <button onClick={handleRemove} className="btn btn-error">Remove</button>
+                            <button onClick={() => handleRemove(blog._id)} className="btn btn-error">Remove</button>
                         </div>
                     </div>
                 </div>
