@@ -31,9 +31,9 @@ const AllBlogs = () => {
             return
         }
         blog.wishlist_email = user.email;
-        const { title, image_url, short_description, long_description, category, email, ownerName, ownerProfile, wishlist_email } = blog
+        const { title, image_url, short_description, long_description, category, email, ownerName, ownerProfile, wishlist_email, _id } = blog
         const newDate = new Date();
-        const newBlog = { title, image_url, short_description, long_description, category, email, ownerName, ownerProfile, wishlist_email, newDate }
+        const newBlog = { title, image_url, short_description, long_description, category, email, ownerName, ownerProfile, wishlist_email, newDate, id: _id }
 
         axios.post("https://blog-zone-server.vercel.app/add-wishlist", newBlog)
             .then(res => {

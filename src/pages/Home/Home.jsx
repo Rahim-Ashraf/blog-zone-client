@@ -23,9 +23,9 @@ const Home = () => {
             return
         }
         blog.wishlist_email = user.email;
-        const { title, image_url, short_description, long_description, category, email, ownerName, ownerProfile, wishlist_email } = blog
+        const { title, image_url, short_description, long_description, category, email, ownerName, ownerProfile, wishlist_email, _id } = blog;
         const newDate = new Date();
-        const newBlog = { title, image_url, short_description, long_description, category, email, ownerName, ownerProfile, wishlist_email, newDate }
+        const newBlog = { title, image_url, short_description, long_description, category, email, ownerName, ownerProfile, wishlist_email, newDate, id: _id }
 
         axios.post("https://blog-zone-server.vercel.app/add-wishlist", newBlog)
             .then(res => {
@@ -48,19 +48,19 @@ const Home = () => {
             <div className="hero min-h-screen bg-base-200">
 
                 <div className="lg:flex flex-row-reverse p-6 gap-16">
-                    <motion.div className="lg:w-1/2" animate={{ scale: [0.5, 1, 0.5, 1],opacity:[0,1] }}
+                    <motion.div className="lg:w-1/2" animate={{ scale: [0.5, 1, 0.5, 1], opacity: [0, 1] }}
                         transition={{ type: "spring", stiffness: 20 }}>
                         <div>
                             <img src="https://www.blogtyrant.com/wp-content/uploads/2020/03/free-images-for-blog.png" className=" rounded-lg shadow-2xl" />
                         </div>
                     </motion.div>
-                    <motion.div className="lg:w-1/2" animate={{ y:20 }}
+                    <motion.div className="lg:w-1/2" animate={{ y: 20 }}
                         transition={{ type: "spring", stiffness: 10 }}>
-                    <div>
-                        <h1 className="text-5xl font-bold">Blog zone site</h1>
-                        <p className="py-6">Welcome to Blog Zone, your digital sanctuary for captivating content and boundless inspiration. Here, imagination knows no bounds. Our carefully curated collection of articles, videos, and insights awaits your exploration, promising a journey brimming with discovery and enlightenment. Embark with us on a quest for knowledge, creativity, and connection. Step into our world, where every scroll unveils a new chapter in the story of your digital odyssey.</p>
-                        <button className="btn bg-emerald-600 text-white">Details</button>
-                    </div>
+                        <div>
+                            <h1 className="text-5xl font-bold">Blog zone site</h1>
+                            <p className="py-6">Welcome to Blog Zone, your digital sanctuary for captivating content and boundless inspiration. Here, imagination knows no bounds. Our carefully curated collection of articles, videos, and insights awaits your exploration, promising a journey brimming with discovery and enlightenment. Embark with us on a quest for knowledge, creativity, and connection. Step into our world, where every scroll unveils a new chapter in the story of your digital odyssey.</p>
+                            <button className="btn bg-emerald-600 text-white">Details</button>
+                        </div>
                     </motion.div>
                 </div>
 

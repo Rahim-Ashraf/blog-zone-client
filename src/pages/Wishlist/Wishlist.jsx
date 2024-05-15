@@ -50,7 +50,7 @@ const Wishlist = () => {
                         <p>{blog.short_description}</p>
                         <h2 className="text-xl text-emerald-600 font-semibold">Category: {blog.category}</h2>
                         <div className="card-actions justify-between">
-                            <Link to={`/blog-details/${blog._id}`} className="btn bg-emerald-600 text-white">Details</Link>
+                            <Link to={`/blog-details/${blog.id}`} className="btn bg-emerald-600 text-white">Details</Link>
                             <button onClick={() => handleRemove(blog._id)} className="btn btn-error">Remove</button>
                         </div>
                     </div>
