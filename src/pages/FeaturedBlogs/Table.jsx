@@ -10,7 +10,8 @@ import {
 const columnHelper = createColumnHelper();
 
 const columns = [
-  columnHelper.accessor('_id', {
+  columnHelper.display({
+    id: 'index',
     header: () => 'No',
     cell: info => info.row.index + 1,
   }),
