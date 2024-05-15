@@ -40,7 +40,8 @@ const router = createBrowserRouter([
             },
             {
                 path: "/featured-blogs",
-                element: <FeaturedBlogs></FeaturedBlogs>
+                element: <FeaturedBlogs></FeaturedBlogs>,
+                // loader: () => fetch('https://blog-zone-server.vercel.app/all-blogs')
             },
             {
                 path: "/blog-details/:id",

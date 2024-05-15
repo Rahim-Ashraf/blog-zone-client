@@ -1,10 +1,26 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import Table from "./Table";
+import { useState } from "react";
 
 
 
 
 
+const columns = [
+    {
+        header: 'Blog Title',
+        accessorKey: 'title',
+    },
+    {
+        header: 'Blog Owner',
+        accessorKey: 'ownerName',
+    },
+    {
+        header: 'Owner Profile',
+        accessorKey: 'ownerProfile',
+    },
+];
 
 
 
@@ -22,10 +38,29 @@ const FeaturedBlogs = () => {
             return slicedArray;
         }
     })
+    // const [data,setData]= useState(featuredBlogs||[{title:""}])
+    console.log(featuredBlogs)
+    // const data = [
+    //     {
+    //         title: 'John Doe',
+    //         ownerName: 28,
+    //         ownerProfile: 'USA',
+    //     },
+    //     {
+    //         title: 'Jane Smith',
+    //         owner: 34,
+    //         profile: 'Canada',
+    //     },
+    //     {
+    //         title: 'Alice Johnson',
+    //         owner: 45,
+    //         profile: 'UK',
+    //     },
+    // ];
 
+    
 
-
-
+    
 
     return (
         <div>
@@ -52,7 +87,8 @@ const FeaturedBlogs = () => {
                     </tbody>
                 </table>
             </div>
-
+            {/* tanstack table */}
+            {/* <Table  columns={columns} data={data}></Table> */}
         </div>
     );
 };

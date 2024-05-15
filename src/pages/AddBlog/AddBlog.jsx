@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/Provider";
+import { toast } from "react-toastify";
 
 
 const AddBlog = () => {
@@ -27,7 +28,15 @@ const AddBlog = () => {
             ownerProfile
         }
         axios.post("https://blog-zone-server.vercel.app/add-blog", data)
-            .then(data => console.log(data.data))
+            .then(data => {
+                if (data.data.acknowledged) {
+                    toast.success("Added successfully")
+                    form.title.value = ""
+                    form.image_url.value = ""
+                    form.short_description.value = ""
+                    form.long_description.value = ""
+                }
+            })
     }
     return (
         <div className="card shrink-0 w-full max-w-6xl mx-auto shadow-2xl bg-base-100">

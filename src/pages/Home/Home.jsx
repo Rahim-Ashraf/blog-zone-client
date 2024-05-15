@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../Provider/Provider";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion"
 
 
 const Home = () => {
@@ -41,17 +42,30 @@ const Home = () => {
 
     return (
         <div>
+
             {/* banner */}
+
             <div className="hero min-h-screen bg-base-200">
-                <div className="hero-content flex-col lg:flex-row-reverse">
-                    <img src="https://www.blogtyrant.com/wp-content/uploads/2020/03/free-images-for-blog.png" className="max-w-sm rounded-lg shadow-2xl" />
+
+                <div className="lg:flex flex-row-reverse p-6 gap-16">
+                    <motion.div className="lg:w-1/2" animate={{ scale: [0.5, 1, 0.5, 1],opacity:[0,1] }}
+                        transition={{ type: "spring", stiffness: 20 }}>
+                        <div>
+                            <img src="https://www.blogtyrant.com/wp-content/uploads/2020/03/free-images-for-blog.png" className=" rounded-lg shadow-2xl" />
+                        </div>
+                    </motion.div>
+                    <motion.div className="lg:w-1/2" animate={{ y:20 }}
+                        transition={{ type: "spring", stiffness: 10 }}>
                     <div>
                         <h1 className="text-5xl font-bold">Blog zone site</h1>
                         <p className="py-6">Welcome to Blog Zone, your digital sanctuary for captivating content and boundless inspiration. Here, imagination knows no bounds. Our carefully curated collection of articles, videos, and insights awaits your exploration, promising a journey brimming with discovery and enlightenment. Embark with us on a quest for knowledge, creativity, and connection. Step into our world, where every scroll unveils a new chapter in the story of your digital odyssey.</p>
                         <button className="btn bg-emerald-600 text-white">Details</button>
                     </div>
+                    </motion.div>
                 </div>
+
             </div>
+
 
             {/* recent blogs */}
             <div className="my-6">
@@ -93,6 +107,8 @@ const Home = () => {
                         <img className="rounded h-auto" src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
                     </div>
                 </div>
+
+
             </section>
             <div className="bg-cyan-200 rounded-lg p-6 my-10">
                 <form className="card-body">
@@ -132,7 +148,6 @@ const Home = () => {
                     </div>
                 </form>
             </div>
-
         </div>
     );
 };
