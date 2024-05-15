@@ -41,6 +41,7 @@ const BlogDetails = () => {
                             <p>{blogDetails.short_description}</p>
                         </div>
                         <p>{blogDetails.long_description}</p>
+                        <h2 className="text-xl font-bold">Category: <span className="text-emerald-600">{blogDetails.category}</span></h2>
                     </div>
                 </div>
                 {user.email === blogDetails.email ? <div className="flex justify-between">
