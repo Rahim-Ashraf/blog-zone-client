@@ -16,6 +16,7 @@ const Navbar = () => {
         <li><Link to={"all-blogs"}>All blogs</Link></li>
         <li><Link to={"featured-blogs"}>Featured Blogs</Link></li>
         {user && <li><Link to={"wishlist"}>Wishlist</Link></li>}
+        {user && <li><Link to={"my-blogs"}>My Blogs</Link></li>}
     </>
     return (
         <motion.div animate={{ scale: [0.9, 1, 0.9, 1], opacity: [0, 1] }}
