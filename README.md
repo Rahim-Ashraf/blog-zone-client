@@ -7,3 +7,6 @@
 *   You can add blogs to wishlist
 *   You can remove blogs form wishlist
 *   This website contain privete route and secure api
+
+### Technologies used:
+React, Tailwind CSS, Firebase, Express JS, MongoDB
